@@ -1,0 +1,2 @@
+# shellscriptpractice
+元来は総研大計算科学概論のために作ったもの
