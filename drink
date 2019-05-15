@@ -1,0 +1,16 @@
+#! /bin/bash
+
+while [ "${age}" == "" ]
+do
+    echo -n "age? "
+    read age    
+done
+
+if [ $age -ge 20 ]
+then
+    CAN=can
+else
+    CAN=cannot
+fi
+
+echo "You $CAN drink"

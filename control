@@ -1,0 +1,46 @@
+#! /bin/bash
+
+PGM=./compute
+DATA_DIR=./data
+DATA_PREFIX=result
+
+P1_FIRST=10
+P1_LAST=15
+P1_STEP=1
+
+P2_FIRST=30
+P2_LAST=40
+P2_STEP=2
+
+if [ ! -d $DATA_DIR ]
+then
+    mkdir $DATA_DIR || exit 1
+fi
+
+dataname () {
+    p1=$1
+    p2=$2
+    fn=$DATA_DIR/${DATA_PREFIX}-${p1}-${p2}.data
+    echo $fn
+}
+
+doit () {
+    p1=$1
+    p2=$2
+    fn=`dataname $p1 $p2`
+
+    date
+    $PGM $p1 $p2 > $fn
+    date
+    head -3 $fn
+    echo ""
+}
+
+for p1 in `seq $P1_FIRST $P1_STEP $P1_LAST`
+do
+    for p2 in `seq $P2_FIRST $P2_STEP $P2_LAST`
+    do
+	echo $p1 $p2
+	doit $p1 $p2
+    done
+done

@@ -1,0 +1,26 @@
+#! /bin/bash
+
+if [ $# != 2 ]
+then
+    echo "usage: $0 directory1 directory2" 1>&2
+    exit 1
+fi
+
+f1=`mktemp`
+f2=`mktemp`
+
+trap "rm -f $f1 $f2" EXIT INT QUIT KILL
+
+ls $1 > $f1
+ls $2 > $f2
+
+#comm <(ls $1) <(ls $2)
+
+echo ">>> only in $1"
+comm -23 $f1 $f2
+
+echo ">>> only in $2"
+comm -13 $f1 $f2
+
+echo ">>> both in $1 and $2"
+comm -12 $f1 $f2

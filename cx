@@ -1,0 +1,3 @@
+#! /bin/sh
+#set -x
+chmod u+x "$@"

@@ -1,0 +1,10 @@
+#! /bin/bash
+
+ARG1=$1
+ARG2=$2
+
+for n in `seq 10`
+do
+    echo $(($RANDOM * $ARG1)) \
+    $(echo "$RANDOM / $ARG2" | bc -l)
+done
